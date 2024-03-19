@@ -4,7 +4,7 @@
   "description": "Projeto de estudo prático do Selenium com JavaScript",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha --no-timeouts 'tests/*.js'"
+    "test": "npx mocha --no-timeouts 'tests/*.js' --reporter mochawesome --require mochawesome/register"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   "homepage": "https://github.com/A-lineed/SeleniumJSBasic#readme",
   "dependencies": {
     "chai": "^5.1.0",
+    "mochawesome": "^7.1.3",
     "selenium-webdriver": "^4.18.1"
   }
 }

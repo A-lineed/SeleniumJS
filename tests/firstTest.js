@@ -2,8 +2,8 @@ const { Builder, Browser, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
 
 
-describe("Checklist", function(){
-    it("Adicionando tarefa", async function() {
+describe("Criação de tarefa", function(){
+    it("Adicionando tarefa com sucesso", async function() {
 
     //Instanciando navegador 
     let driver = await new Builder().forBrowser(Browser.CHROME).build();
