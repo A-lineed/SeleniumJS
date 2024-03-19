@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/A-lineed/SeleniumJSBasic#readme",
   "dependencies": {
+    "chai": "^5.1.0",
     "selenium-webdriver": "^4.18.1"
   }
 }
