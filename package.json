@@ -1,0 +1,22 @@
+{
+  "name": "seleniumjs",
+  "version": "1.0.0",
+  "description": "Projeto de estudo prático do Selenium com JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A-lineed/SeleniumJSBasic.git"
+  },
+  "author": "Aline Edvania de F S Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/A-lineed/SeleniumJSBasic/issues"
+  },
+  "homepage": "https://github.com/A-lineed/SeleniumJSBasic#readme",
+  "dependencies": {
+    "selenium-webdriver": "^4.18.1"
+  }
+}
