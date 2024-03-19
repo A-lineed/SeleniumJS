@@ -4,7 +4,7 @@
   "description": "Projeto de estudo prático do Selenium com JavaScript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx mocha --no-timeouts 'tests/*.js'"
   },
   "repository": {
     "type": "git",

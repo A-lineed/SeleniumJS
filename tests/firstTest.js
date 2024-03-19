@@ -1,7 +1,9 @@
 const { Builder, Browser, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
 
-async function example() {
+
+describe("Checklist", function(){
+    it("Adicionando tarefa", async function() {
 
     //Instanciando navegador 
     let driver = await new Builder().forBrowser(Browser.CHROME).build();
@@ -20,5 +22,5 @@ async function example() {
 
     //Fechando o navegador
     await driver.quit()
-}
-example()
+    });
+});
