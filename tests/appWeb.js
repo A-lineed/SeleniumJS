@@ -14,10 +14,10 @@ describe("Aplicação da web", function () {
         //Primeiro teste - Preenchendo campo 
         await driver.findElement(By.id("sampletodotext")).sendKeys("Learn Selenium", Key.RETURN);
 
-        //assert 
+        //Acessando componente 
         let todoText = await driver.findElement(By.xpath("/html/body/div/div/h2")).getText()
 
-        //assert using node assertion 
+        //Verificando se o texto do componente é igual a "LambdaTest Sample App"
         assert.strictEqual(todoText, "LambdaTest Sample App");
 
         //Fechando o navegador
@@ -26,23 +26,3 @@ describe("Aplicação da web", function () {
 
 });
 
-
-describe('Aplicação local - Central de Atendimento ao Cliente TAT', function () {
-    it('Verifica o título da aplicação', async function () {
-
-        //Instanciando navegador 
-        const driver = await new Builder().forBrowser(Browser.CHROME).build();
-
-        //Navegando pela aplicação 
-        await driver.get("file:///C:/Users/aline.franca/Documents/Automa%C3%A7%C3%A3o%20de%20testes/SeleniumJS/src/index.html")
-
-        //Solicitando informação do navegador 
-        let title = await driver.getTitle();
-
-        //Validando se variável é igual a "CAC TAT"
-        assert.strictEqual(title, "Central de Atendimento ao Cliente TAT");
-
-        //Fechando o navegador
-        await driver.quit()
-    })
-})
