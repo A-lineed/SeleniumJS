@@ -1,5 +1,6 @@
 const { Builder, Browser, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
+const { Select } = require('selenium-webdriver');
 
 
 
@@ -126,7 +127,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     })
 
-    it('CT 06** - Preenche os campos, limpa os campos e depois verifica se os campos estão vazios', async function () {
+    it('CT06** - Preenche os campos, limpa os campos e depois verifica se os campos estão vazios', async function () {
 
         let nome = await driver.findElement(By.id('firstName'));
         let sobrenome = await driver.findElement(By.id('lastName'));
@@ -171,7 +172,61 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         await driver.sleep(500);
 
         assert.strictEqual(errorElement, "Valide os campos obrigatórios!");
-    })
+    });
 
+
+    it('CT08 - seleciona um produto (YouTube) por seu texto', async function () {
+        let listaSuspensa = await driver.findElement(By.id('product'));
+
+        //instanciando objeto para uso da classe Select do selenium
+        let select = new Select(listaSuspensa);
+
+        //seleciona pelo texto visível
+        select.selectByVisibleText('YouTube');
+
+        await driver.sleep(500);
+        // Obter o elemento da opção selecionada
+        let valorSelecionadoElement = await select.getFirstSelectedOption();
+        let valorSelecionado = await valorSelecionadoElement.getText();
+
+        //Valida se o valor selecionado é igual a "YouTube"
+        assert.equal(valorSelecionado, "YouTube");
+    });
+
+    it('CT09 - seleciona um produto (Mentoria) por seu valor', async function () {
+        let listaSuspensa = await driver.findElement(By.id('product'));
+
+        //instanciando objeto para uso da classe Select do selenium
+        let select = new Select(listaSuspensa);
+
+        //Seleciona pelo valor
+        select.selectByValue('mentoria');
+
+        await driver.sleep(500);
+        // Obter o elemento da opção selecionada
+        let valorSelecionadoElement = await select.getFirstSelectedOption();
+        let valorSelecionado = await valorSelecionadoElement.getText();
+
+        //Valida se o valor selecionado é igual a "Mentoria"
+        assert.equal(valorSelecionado, "Mentoria");
+    });
+
+    it('CT10 - seleciona um produto (Blog) por seu índice', async function () {
+        let listaSuspensa = await driver.findElement(By.id('product'));
+
+        //instanciando objeto para uso da classe Select do selenium
+        let select = new Select(listaSuspensa);
+
+        // Seleciona pelo índice
+        select.selectByIndex(1);
+
+        await driver.sleep(500);
+        // Obter o elemento da opção selecionada
+        let valorSelecionadoElement = await select.getFirstSelectedOption();
+        let valorSelecionado = await valorSelecionadoElement.getText();
+
+        //Valida se o valor selecionado é igual a "Blog"
+        assert.equal(valorSelecionado, "Blog");
+    });
 
 })
