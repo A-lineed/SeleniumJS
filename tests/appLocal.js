@@ -229,4 +229,56 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         assert.equal(valorSelecionado, "Blog");
     });
 
+    it('CT11 - marca o tipo de atendimento "Feedback"', async function () {
+        let radioBtn = await driver.findElement(By.xpath('//*[@id="support-type"]/label[4]/input'));
+
+        // Verificar se o radio button está selecionado
+        let selecionado = await radioBtn.isSelected();
+        console.log('Selecionado antes de clicar:', selecionado);
+
+        // Clica no radio button para marcá-lo
+        await radioBtn.click();
+
+        await driver.sleep(500);
+
+        // Verifica se o radio button está selecionado após clicar
+        selecionado = await radioBtn.isSelected();
+        console.log('Selecionado após clicar:', selecionado);
+
+        //Valida se o radio button selecionado tem o value "feedback"
+        let valorSelecionado = await radioBtn.getAttribute('value');
+        assert.strictEqual(valorSelecionado, 'feedback');
+
+    });
+
+    it('CT12 - marca cada tipo de atendimento', async function () {
+        let radioAjuda = await driver.findElement(By.xpath('//*[@id="support-type"]/label[2]/input'));
+        let radioElogio = await driver.findElement(By.xpath('//*[@id="support-type"]/label[3]/input'));
+        let radioFeedback = await driver.findElement(By.xpath('//*[@id="support-type"]/label[4]/input'));
+
+        // Verificar se o radio button está selecionado
+        let selecionadoAjuda = await radioAjuda.isSelected();
+        console.log('Ajuda - Selecionado antes de clicar:', selecionadoAjuda);
+        let selecionadoElogio = await radioElogio.isSelected();
+        console.log('Elogio - Selecionado antes de clicar:', selecionadoElogio);
+        let selecionadoFeedback = await radioFeedback.isSelected();
+        console.log('Feedback - Selecionado antes de clicar:', selecionadoFeedback);
+
+
+        // Clica no radio button para marcá-lo
+        await radioAjuda.click();
+        await driver.sleep(500);
+        selecionadoAjuda = await radioAjuda.isSelected();
+        console.log('Ajuda - Selecionado depois de clicar:', selecionadoAjuda);
+
+        await radioElogio.click();
+        await driver.sleep(500);
+        selecionadoElogio = await radioElogio.isSelected();
+        console.log('Elogio - Selecionado depois de clicar:', selecionadoElogio);
+
+        await radioFeedback.click();
+        selecionadoFeedback = await radioFeedback.isSelected();
+        console.log('Feedback - Selecionado depois de clicar:', selecionadoFeedback);
+    });
+
 })
