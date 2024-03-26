@@ -19,7 +19,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     afterEach(async function () {
         //Fechando o navegador 
-        //await driver.quit();
+        await driver.quit();
     });
 
     it('CT01 - Verifica o título da aplicação', async function () {
@@ -310,7 +310,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     });
 
-    it.only('CT14 - Seleciona o arquivo da pasta img', async function () {
+    it('CT14 - Seleciona o arquivo da pasta img', async function () {
 
         let fileInput = driver.findElement(By.id("file-upload"));
 
@@ -324,6 +324,42 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
         //console.log(uploadedFilePath)
         assert.strictEqual(uploadedFilePath, "C:\\fakepath\\Maintenance-amico.png")
+
+    });
+
+
+    it('CT15 - testa o título do link que abre em outro navegador', async function () {
+
+        // Encontra o link que abre em uma nova aba
+        let linkElement = await driver.findElement(By.xpath('//*[@id="privacy"]/a'));
+
+        // Obtém a URL do link
+        let linkUrl = await linkElement.getAttribute('href');
+
+        // Abre o link em uma nova aba
+        await driver.executeScript("window.open(arguments[0])", linkUrl);
+
+        // Aguarda até que haja duas abas abertas
+        await driver.wait(async function () {
+            let handles = await driver.getAllWindowHandles();
+            return handles.length === 2;
+        }, 10000);
+
+        // Muda o foco para a nova aba
+        let handles = await driver.getAllWindowHandles();
+        await driver.switchTo().window(handles[1]);
+
+        //Solicitando informação do navegador 
+        let title = await driver.getTitle();
+
+        //Validando se o título é igual ao texto
+        assert.strictEqual(title, "Central de Atendimento ao Cliente TAT - Política de privacidade");
+
+        // Fecha a nova aba
+        await driver.close();
+
+        // Muda o foco de volta para a primeira aba
+        await driver.switchTo().window(handles[0]);
 
     });
 
