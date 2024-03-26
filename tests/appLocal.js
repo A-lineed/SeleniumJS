@@ -1,6 +1,7 @@
 const { Builder, Browser, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
 const { Select } = require('selenium-webdriver');
+const WebElement = require('selenium-webdriver');
 
 
 
@@ -18,7 +19,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     afterEach(async function () {
         //Fechando o navegador 
-        await driver.quit();
+        //await driver.quit();
     });
 
     it('CT01 - Verifica o título da aplicação', async function () {
@@ -301,11 +302,28 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         console.log('Email - Marcado depois de clicar:', marcadoEmail);
         marcadoTelefone = await checkboxTelefone.isSelected();
         console.log('Telefone - Marcado depois de clicar:', marcadoTelefone);
-       
+
         // Clica no checkbox para desmarcá-lo
         await checkboxTelefone.click();
         marcadoTelefone = await checkboxTelefone.isSelected();
         console.log('Telefone - Marcado depois de clicar:', marcadoTelefone);
+
+    });
+
+    it.only('CT14 - Seleciona o arquivo da pasta img', async function () {
+
+        let fileInput = driver.findElement(By.id("file-upload"));
+
+        let fileInputVazio = await fileInput.getAttribute("value");
+        assert.strictEqual(fileInputVazio, "")
+
+        await driver.sleep(500)
+
+        await fileInput.sendKeys('C:\\Users\\aline.franca\\Documents\\Automação de testes\\SeleniumJS\\img\\Maintenance-amico.png');
+        let uploadedFilePath = await fileInput.getAttribute("value");
+
+        //console.log(uploadedFilePath)
+        assert.strictEqual(uploadedFilePath, "C:\\fakepath\\Maintenance-amico.png")
 
     });
 
