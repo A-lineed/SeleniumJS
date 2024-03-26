@@ -281,4 +281,32 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         console.log('Feedback - Selecionado depois de clicar:', selecionadoFeedback);
     });
 
+    it('CT13 - marca ambos checkboxes, depois desmarca o último"', async function () {
+        // Localiza o elemento do checkbox pelo ID
+        let checkboxEmail = await driver.findElement(By.id('email-checkbox'));
+        let checkboxTelefone = await driver.findElement(By.id('phone-checkbox'));
+
+        // Verifica se o checkbox está marcado
+        let marcadoEmail = await checkboxEmail.isSelected();
+        console.log('Email - Marcado antes de clicar:', marcadoEmail);
+        let marcadoTelefone = await checkboxTelefone.isSelected();
+        console.log('Telefone - Marcado antes de clicar:', marcadoTelefone);
+
+        // Clica no checkbox para marcá-lo
+        await checkboxEmail.click();
+        await checkboxTelefone.click();
+
+        // Verifica se o checkbox está marcado após clicar
+        marcadoEmail = await checkboxEmail.isSelected();
+        console.log('Email - Marcado depois de clicar:', marcadoEmail);
+        marcadoTelefone = await checkboxTelefone.isSelected();
+        console.log('Telefone - Marcado depois de clicar:', marcadoTelefone);
+       
+        // Clica no checkbox para desmarcá-lo
+        await checkboxTelefone.click();
+        marcadoTelefone = await checkboxTelefone.isSelected();
+        console.log('Telefone - Marcado depois de clicar:', marcadoTelefone);
+
+    });
+
 })
