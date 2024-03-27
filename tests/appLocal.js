@@ -28,7 +28,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     afterEach(async function () {
         //Fechando o navegador 
-        //await driver.quit();
+        await driver.quit();
     });
 
     it('CT01 - Verifica o título da aplicação', async function () {
@@ -208,6 +208,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
         //instanciando objeto para uso da classe Select do selenium
         let select = new Select(listaSuspensa);
+        await driver.sleep(500);
 
         //Seleciona pelo valor
         select.selectByValue('mentoria');
