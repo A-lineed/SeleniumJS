@@ -4,7 +4,7 @@
   "description": "Projeto de estudo prático do Selenium com JavaScript",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha --no-timeouts 'tests/*.js' --reporter mochawesome --require mochawesome/register"
+    "test": "npx mocha --no-timeouts 'tests/*.js'"
   },
   "repository": {
     "type": "git",
