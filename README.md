@@ -1,7 +1,7 @@
 # SeleniumJSBasic
 
 
-Projeto de estudo do Selenium utilizando a linguagem de JavaScript.
+Projeto de estudo do básico com Selenium utilizando a linguagem de JavaScript.
 
 ## Pré requisitos
 
