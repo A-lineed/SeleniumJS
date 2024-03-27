@@ -372,7 +372,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     });
 
-    it.only('CT16 - simulando um dispositivo com 410 pixels de largura e 860 pixels de altura', async function () {
+    it('CT16 - simulando um dispositivo com 410 pixels de largura e 860 pixels de altura', async function () {
 
         // Define o tamanho da janela do navegador para simular um dispositivo móvel
         await driver.manage().window().setRect({ width: 410, height: 860 });
