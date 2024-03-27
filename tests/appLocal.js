@@ -13,19 +13,16 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     beforeEach(async function () {
         //Instanciando navegador 
-        //driver = await new Builder().forBrowser(Browser.CHROME).build();
-
-        //Navegando pela aplicação 
-        //await driver.get("file:///C:/Users/aline.franca/Documents/Automa%C3%A7%C3%A3o%20de%20testes/SeleniumJS/src/index.html")
-
+        driver = await new Builder().forBrowser(Browser.CHROME).build();
 
         // Configura opções do Chrome para o modo headless
-        let chromeOptions = new chrome.Options();
-        chromeOptions.addArguments("--headless"); // Configuração para o modo headless
+        // let chromeOptions = new chrome.Options();
+        //chromeOptions.addArguments("--headless"); // Configuração para o modo headless
 
         // Inicializando o driver do Selenium
-        driver = await new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
+        // driver = await new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
 
+        //Navegando pela aplicação 
         await driver.get("file:///C:/Users/aline.franca/Documents/Automa%C3%A7%C3%A3o%20de%20testes/SeleniumJS/src/index.html")
     });
 
@@ -374,5 +371,20 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         await driver.switchTo().window(handles[0]);
 
     });
+
+    it.only('CT16 - simulando um dispositivo com 410 pixels de largura e 860 pixels de altura', async function () {
+
+        // Define o tamanho da janela do navegador para simular um dispositivo móvel
+        await driver.manage().window().setRect({ width: 410, height: 860 });
+
+
+        //Solicitando informação do navegador 
+        let title = await driver.getTitle();
+
+        //Validando se variável é igual ao texto
+        assert.strictEqual(title, "Central de Atendimento ao Cliente TAT");
+    });
+
+
 
 })
