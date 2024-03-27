@@ -2,6 +2,7 @@ const { Builder, Browser, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
 const { Select } = require('selenium-webdriver');
 const WebElement = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 
 
 
@@ -9,17 +10,28 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     let driver;
 
+
     beforeEach(async function () {
         //Instanciando navegador 
-        driver = await new Builder().forBrowser(Browser.CHROME).build();
+        //driver = await new Builder().forBrowser(Browser.CHROME).build();
 
         //Navegando pela aplicação 
+        //await driver.get("file:///C:/Users/aline.franca/Documents/Automa%C3%A7%C3%A3o%20de%20testes/SeleniumJS/src/index.html")
+
+
+        // Configura opções do Chrome para o modo headless
+        let chromeOptions = new chrome.Options();
+        chromeOptions.addArguments("--headless"); // Configuração para o modo headless
+
+        // Inicializando o driver do Selenium
+        driver = await new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
+
         await driver.get("file:///C:/Users/aline.franca/Documents/Automa%C3%A7%C3%A3o%20de%20testes/SeleniumJS/src/index.html")
     });
 
     afterEach(async function () {
         //Fechando o navegador 
-        await driver.quit();
+        //await driver.quit();
     });
 
     it('CT01 - Verifica o título da aplicação', async function () {
