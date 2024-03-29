@@ -11,18 +11,20 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
+      - name: Chrome mais atual
+        uses: browser-actions/setup-chrome@v1
+        
       - name: Configuração do Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Configuração do Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 123.0.6312.86
+      
 
       - name: Instalação das dependências
         run: npm install
+
+      - name: Utilizar o chrome 
+        run: chrome --version
 
       - name: Verificar versão do Chrome
         run: google-chrome --version
