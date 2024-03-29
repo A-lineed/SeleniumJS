@@ -21,8 +21,5 @@ jobs:
       - name: Instalação das dependências
         run: npm install
 
-      - name: Instalar Chrome
-        run: sudo dpkg -i ChromeStandaloneSetup64.exe 
-
       - name: Execução dos testes
         run: npm test
