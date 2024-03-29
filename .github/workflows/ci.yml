@@ -21,11 +21,11 @@ jobs:
         with:
           chrome-version: 123.0.6312.86
 
-      - name: Verificar versão do Chrome
-        run: google-chrome --version
-
       - name: Instalação das dependências
         run: npm install
+
+      - name: Verificar versão do Chrome
+        run: google-chrome --version
 
       - name: Execução dos testes
         run: npm test
