@@ -33,8 +33,13 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     it('CT01 - Verifica o título da aplicação', async function () {
 
+        await driver.sleep(500);
+
         //Solicitando informação do navegador 
         let title = await driver.getTitle();
+
+        await driver.sleep(500);
+
 
         //Validando se variável é igual a "CAC TAT"
         assert.strictEqual(title, "Central de Atendimento ao Cliente TAT");
