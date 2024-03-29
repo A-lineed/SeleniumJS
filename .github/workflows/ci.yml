@@ -1,21 +1,22 @@
-name: Run Selenium Tests
+name: CI
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout do código
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2.5.0
-      with:
-        node-version: '14.18.3'
+      - name: Configuração do Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.18.3
 
-    - name: Install dependencies
-      run: npm install
+      - name: Instalação das dependências
+        run: npm install
 
-    - name: Run Selenium Tests
-      run: npm test
+      - name: Execução dos testes
+        run: npm test
