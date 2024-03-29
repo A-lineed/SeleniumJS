@@ -3,6 +3,7 @@ const assert = require("assert");
 const { Select } = require('selenium-webdriver');
 const WebElement = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
+const axios = require('axios');
 
 
 
@@ -13,14 +14,14 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     beforeEach(async function () {
         //Instanciando navegador 
-        //driver = await new Builder().forBrowser(Browser.CHROME).build();
+        driver = await new Builder().forBrowser(Browser.CHROME).build();
 
         // Configura opções do Chrome para o modo headless
-        let chromeOptions = new chrome.Options();
-        chromeOptions.addArguments("--headless"); // Configuração para o modo headless
+        //let chromeOptions = new chrome.Options();
+        //chromeOptions.addArguments("--headless"); // Configuração para o modo headless
 
         // Inicializando o driver do Selenium
-        driver = await new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
+        //driver = await new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
 
         //Navegando pela aplicação 
         await driver.get("file:///C:/Users/aline.franca/Documents/Automa%C3%A7%C3%A3o%20de%20testes/SeleniumJS/src/index.html")
@@ -28,7 +29,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     afterEach(async function () {
         //Fechando o navegador 
-        await driver.quit();
+        //await driver.quit();
     });
 
     it('CT01 - Verifica o título da aplicação', async function () {
@@ -391,5 +392,25 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         assert.strictEqual(title, "Central de Atendimento ao Cliente TAT");
     });
 
+    it('CT17 - Valida se mensagem de erro não está mais sendo apresentada na tela', async function () {
 
-})
+        // Espera até que a mensagem com a classe 'error' não esteja mais visível na página
+        await driver.wait(async () => {
+            return !(await driver.findElement(By.className('error')).isDisplayed());
+        }, 10000); // Espera por até 10 segundos
+
+        console.log('A mensagem não está mais visível na tela.');
+    });
+
+    it('CT18 - faz uma requisição HTTP', async function () {
+
+        // Faz a requisição HTTP usando axios
+        const response = await axios.get('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html');
+        const { status, statusText } = response;
+        assert.strictEqual(status, 200);
+        assert.strictEqual(statusText, 'OK');
+        await driver.sleep(500);
+
+    });
+
+});
