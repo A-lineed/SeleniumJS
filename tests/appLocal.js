@@ -28,7 +28,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     afterEach(async function () {
         //Fechando o navegador 
-        //await driver.quit();
+        await driver.quit();
     });
 
     it('CT01 - Verifica o título da aplicação', async function () {

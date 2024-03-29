@@ -7,16 +7,18 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
+      - name: Chrome 
+        uses: browser-actions/setup-chrome@v1
+        with:
+         chrome-version: 123.0.6312.86
+
       - name: Checkout do código
         uses: actions/checkout@v3
-
-      - name: Chrome
-        uses: browser-actions/setup-chrome@v1
         
       - name: Configuração do Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 14.18.3
       
       - name: Instalação das dependências
         run: npm install
