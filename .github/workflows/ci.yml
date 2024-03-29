@@ -5,15 +5,21 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+  
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Configuração do Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 14.18.3
+          node-version: 16
+
+      - name: Configuração do Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 123.0.6312.86
 
       - name: Verificar versão do Chrome
         run: google-chrome --version
@@ -23,3 +29,5 @@ jobs:
 
       - name: Execução dos testes
         run: npm test
+
+    
