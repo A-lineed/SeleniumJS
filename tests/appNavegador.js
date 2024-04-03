@@ -1,5 +1,6 @@
 const { Builder, Browser, By, Key } = require("selenium-webdriver");
 const assert = require("assert");
+const { Actions } = require("selenium-webdriver");
 
 
 describe('Aplicação local - Central de Atendimento ao Cliente TAT', function () {
@@ -27,7 +28,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         // await driver.quit();
     });
 
-    it.only('01 - Pressiona o botão voltar do navegador, depois pressiona o avançar e depois o atualizar', async function () {
+    it('01 - Pressiona o botão voltar do navegador, depois pressiona o avançar e depois o atualizar', async function () {
         let botaoElement = await driver.findElement(By.xpath('//*[@id="header"]/nav/div/div[2]/ul/li[10]/a'));
 
         await botaoElement.click();
@@ -46,6 +47,25 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
         //Atualizando a página atual:
         await driver.navigate().refresh();
+
+    })
+
+    it.only('02 - Clicando em um menu suspenso', async function () {
+
+        // Encontrando o botão que abre o menu suspenso
+        let button = await driver.findElement(By.className('dropdown-toggle'));
+
+        // Clicando no botão para abrir o menu suspenso
+        await button.click();
+
+        //Aguardando o menu suspenso aparecer
+        await driver.manage().setTimeouts({ implicit: 5000 });
+
+        // Encontrando a opção do menu suspenso que deseja clicar
+        let menuOption = await driver.findElement(By.xpath('//*[@id="header"]/nav/div/div[2]/ul/li[4]/ul/li[1]/a'));
+
+        // Clicando na opção do menu suspenso
+        await menuOption.click();
 
     })
 });
