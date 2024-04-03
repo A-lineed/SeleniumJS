@@ -4,6 +4,7 @@ const { Select } = require('selenium-webdriver');
 const WebElement = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const axios = require('axios');
+const { link } = require("fs");
 
 
 
@@ -29,7 +30,7 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
 
     afterEach(async function () {
         //Fechando o navegador 
-        //await driver.quit();
+        await driver.quit();
     });
 
     it('CT01 - Verifica o título da aplicação', async function () {
@@ -411,6 +412,19 @@ describe('Aplicação local - Central de Atendimento ao Cliente TAT', function (
         assert.strictEqual(statusText, 'OK');
         await driver.sleep(500);
 
+    });
+
+    it('CT19 - Apresenta um elemento HTML que está escondido', async function () {
+
+        // Use executeScript() para alterar as propriedades do elemento e torná-lo visível
+        await driver.executeScript("document.querySelector('#cat').style.display = 'block';");
+
+    });
+
+    it('CT20 - Esconde um elemento HTML que está visível', async function () {
+
+        // Use executeScript() para alterar as propriedades CSS do elemento e torná-lo invisível
+        await driver.executeScript("document.querySelector('#cat').style.display = 'none';");
     });
 
 });
